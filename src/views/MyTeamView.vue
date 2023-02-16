@@ -14,7 +14,7 @@
         <md-table-head>Actions</md-table-head>
       </md-table-row>
 
-      <md-table-row v-for="p in pokemons" v-bind:key="p.id">
+      <md-table-row v-for="p in pokemons" v-bind:key="p._id">
         <md-table-cell md-label="ID" md-numeric>{{ p.id }}</md-table-cell>
         <md-table-cell md-label="Name">{{ p.name }}</md-table-cell>
         <md-table-cell md-label="Icon">
@@ -40,7 +40,7 @@
           >
             <md-icon>save</md-icon>
           </md-button>
-          <md-button class="md-icon-button md-dense md-accent" @click="onDelete(p.id)">
+          <md-button class="md-icon-button md-dense md-accent" @click="onDelete(p._id)">
             <md-icon>delete</md-icon>
           </md-button>
         </md-table-cell>
@@ -93,7 +93,7 @@
       async onSave(pokemon) {
         try {
           await axios.put(`http://localhost:3000/pokemon-team/`, {
-            id: pokemon.id,
+            _id: pokemon._id,
             nickname: pokemon.nickname
           });
           await this.getPokemons();
